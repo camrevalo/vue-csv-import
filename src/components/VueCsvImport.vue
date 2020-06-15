@@ -204,13 +204,14 @@
 
                 let csv = this.hasHeaders ? drop(this.csv) : this.csv;
 
+                console.log('[VueCsvImport.vue] csv:',csv)
                 return map(csv, (row) => {
                     let newRow = {};
 
                     forEach(_this.map, (column, field) => {
                         set(newRow, field, get(row, column));
                     });
-
+                    console.log({ newRow })
                     return newRow;
                 });
             },
