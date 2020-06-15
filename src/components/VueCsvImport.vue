@@ -28,7 +28,7 @@
             </div>
             <div class="vue-csv-uploader-part-two">
                 <div class="vue-csv-mapping" v-if="sample">
-                    <table :class="tableClass">
+                    <!-- <table :class="tableClass">
                         <slot name="thead">
                             <thead>
                             <tr>
@@ -48,7 +48,7 @@
                             </td>
                         </tr>
                         </tbody>
-                    </table>
+                    </table> -->
                     <div class="form-group" v-if="url">
                         <slot name="submit" :submit="submit">
                             <input type="submit" :class="buttonClass" @click.prevent="submit" :value="submitBtnText">
@@ -204,13 +204,14 @@
 
                 let csv = this.hasHeaders ? drop(this.csv) : this.csv;
 
+                console.log('[VueCsvImport.vue] csv:',csv)
                 return map(csv, (row) => {
                     let newRow = {};
 
                     forEach(_this.map, (column, field) => {
                         set(newRow, field, get(row, column));
                     });
-
+                    console.log({ newRow })
                     return newRow;
                 });
             },
